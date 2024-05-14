@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Cupcake from "../components/Cupcake";
 
 /* ************************************************************************* */
@@ -40,8 +41,19 @@ someCupcakes.push(
 function CupcakeList() {
   console.info(useLoaderData(CupcakeList));
   const cupcakes = useLoaderData();
+  const [accessories, setAccessories] = useState([]);
 
-  // Step 3: get all accessories
+  function fetchAccessories() {
+    fetch("http://localhost:3310/api/accessories")
+      .then((response) => response.json())
+      .then((json) => setAccessories(json));
+  }
+
+  useEffect(() => {
+    fetchAccessories();
+  }, []);
+
+  console.info(accessories);
 
   // Step 5: create filter state
 
@@ -58,13 +70,12 @@ function CupcakeList() {
           </select>
         </label>
       </form>
-      
 
       <ul className="cupcake-list" id="cupcake-list">
-        {cupcakes.map ((cupcake) => (
-               <li className="cupcake-item" key={cupcake.id}>
-               <Cupcake data={cupcake}/>
-             </li>
+        {cupcakes.map((cupcake) => (
+          <li className="cupcake-item" key={cupcake.id}>
+            <Cupcake data={cupcake} />
+          </li>
         ))}
         {/* Step 5: filter cupcakes before repeating */}
         {/* end of block */}
