@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import { useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Cupcake from "../components/Cupcake";
 
 /* ************************************************************************* */
@@ -40,6 +40,7 @@ someCupcakes.push(
 
 function CupcakeList() {
   const [cupcakes, setCupcakes] = useState([]);
+  // const [select, setSelect] = useState("");
 
   function fetchCupcakes() {
     fetch("http://localhost:3310/api/accessories")
@@ -53,7 +54,7 @@ function CupcakeList() {
   }, []);
 
   // console.log(setCupcakes);
-  // console.info(useLoaderData());
+  console.info(useLoaderData());
 
   // Step 3: get all accessories
 
