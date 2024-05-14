@@ -11,8 +11,7 @@ import Instructions from "./pages/Instructions";
 import CupcakeList from "./pages/CupcakeList";
 
 async function fetchCupcakes() {
-  const response = await axios
-    .get("http://localhost:3001/cupcakes");
+  const response = await axios.get("http://localhost:3001/cupcakes");
   return response.data;
 }
 

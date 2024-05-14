@@ -55,6 +55,9 @@ function CupcakeList() {
 
   console.info();
 
+  // Step 4 :
+  const [option, setOption] = useState("");
+
   // Step 5: create filter state
 
   return (
@@ -63,10 +66,18 @@ function CupcakeList() {
       <form className="center">
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
-          Filter by{" "}
-          <select id="cupcake-select">
-            <option value="">---</option>
-            {/* Step 4: add an option for each accessory */}
+          Filter by {/* Step 4: add an option for each accessory */}
+          <select
+            value={option}
+            onChange={(e) => setOption(e.target.value)}
+            id="cupcake-select"
+          >
+            {someCupcakes.map((cupcake) => (
+              <option key={cupcake.id} value={cupcake.accessory}>
+                {cupcake.accessory}
+              </option>
+            ))}
+            ;
           </select>
         </label>
       </form>
