@@ -67,7 +67,11 @@ function CupcakeList() {
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
           <select id="cupcake-select">
-            <option value="">---</option>
+            <option value="1">Cherry</option>
+            <option value="2">Strawberry</option>
+            <option value="3">Donut</option>
+            <option value="4">Chocolat</option>
+            <option value="5">Vanila</option>
             {/* Step 4: add an option for each accessory */}
           </select>
         </label>
