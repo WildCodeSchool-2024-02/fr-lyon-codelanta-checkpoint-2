@@ -49,7 +49,6 @@ function CupcakeList() {
   return (
     <>
       <h1>My cupcakes</h1>
-      {cupcakes ? <pre>{JSON.stringify(cupcakes, null, 2)}</pre> : "Loading..."}
       <form className="center">
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
@@ -61,12 +60,12 @@ function CupcakeList() {
         </label>
       </form>
       <ul className="cupcake-list" id="cupcake-list">
-        {/* Step 2: repeat this block for each cupcake */}
-
-        {/* Step 5: filter cupcakes before repeating */}
-        <li className="cupcake-item">
-          <Cupcake />
-        </li>
+        {/* Step 2: repeat this block for each cupcake using.map */}
+        {cupcakes.map((data) => (
+          <li key={data.id} className="cupcake-item">
+            <Cupcake data={data} />
+          </li>
+        ))}
         {/* end of block */}
       </ul>
     </>
