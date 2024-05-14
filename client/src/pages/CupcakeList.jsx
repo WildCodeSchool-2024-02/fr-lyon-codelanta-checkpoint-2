@@ -38,7 +38,7 @@ someCupcakes.push(
 /* ************************************************************************* */
 
 function CupcakeList() {
-  const cupcakes= useLoaderData();
+  const cupcakes = useLoaderData();
   console.info(useLoaderData());
 
   // Step 3: get all accessories
@@ -67,6 +67,6 @@ function CupcakeList() {
       </ul>
     </>
   );
-};
+}
 
 export default CupcakeList;

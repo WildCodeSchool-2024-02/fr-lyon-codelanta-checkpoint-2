@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 import Instructions from "./pages/Instructions";
 import CupcakeList from "./pages/CupcakeList";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
