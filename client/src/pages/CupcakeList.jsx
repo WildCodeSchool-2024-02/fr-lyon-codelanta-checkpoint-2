@@ -1,4 +1,5 @@
-import { useLoaderData } from "react-router-dom";
+import { useState, useEffect } from "react";
+// import { useLoaderData } from "react-router-dom";
 import Cupcake from "../components/Cupcake";
 
 /* ************************************************************************* */
@@ -38,8 +39,21 @@ someCupcakes.push(
 /* ************************************************************************* */
 
 function CupcakeList() {
-  // Step 1: get all cupcakes
-  console.info(useLoaderData());
+  const [cupcakes, setCupcakes] = useState([]);
+
+  function fetchCupcakes() {
+    fetch("http://localhost:3310/api/accessories")
+      .then((response) => response.json())
+      .then((data) => setCupcakes(data));
+  }
+  // console.log(fetchCupcakes(fetch));
+
+  useEffect(() => {
+    fetchCupcakes();
+  }, []);
+
+  // console.log(setCupcakes);
+  // console.info(useLoaderData());
 
   // Step 3: get all accessories
 
@@ -59,12 +73,14 @@ function CupcakeList() {
         </label>
       </form>
       <ul className="cupcake-list" id="cupcake-list">
-        {/* Step 2: repeat this block for each cupcake */}
-        {/* Step 5: filter cupcakes before repeating */}
-        <li className="cupcake-item">
-          <Cupcake />
-        </li>
-        {/* end of block */}
+        {/* Step 2: repeat this block for each cupcake / */}
+        {cupcakes.map((cupcake) => (
+          <li key={cupcake.id} className="cupcake-item">
+            <Cupcake cupcake={cupcake} />
+            {/* {/ Step 5: filter cupcakes before repeating /} */}
+          </li>
+        ))}
+        {/* end of block  */}
       </ul>
     </>
   );
