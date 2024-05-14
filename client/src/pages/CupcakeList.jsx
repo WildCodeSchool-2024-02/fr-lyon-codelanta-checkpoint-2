@@ -55,6 +55,13 @@ function CupcakeList() {
     fetchAccessories();
   }, []);
   // Step 5: create filter state
+  const [filter, setFilter] = useState(null);
+  const filteredCupcakes = cupcakes.filter((cupcake) => {
+    if (filter === "") {
+      return true;
+    }
+    return cupcake.accessory_id === filter;
+  });
 
   return (
     <>
@@ -63,7 +70,11 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
+          <select
+            id="cupcake-select"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          >
             <option value="">---</option>
             {accessories.map((accessory) => (
               <option key={accessory.id} value={accessory.id}>
@@ -75,7 +86,7 @@ function CupcakeList() {
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake using.map */}
-        {cupcakes.map((data) => (
+        {filteredCupcakes.map((data) => (
           <li key={data.id} className="cupcake-item">
             <Cupcake data={data} />
           </li>
