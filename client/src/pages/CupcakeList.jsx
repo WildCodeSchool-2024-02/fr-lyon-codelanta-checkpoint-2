@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Cupcake from "../components/Cupcake";
 
 /* ************************************************************************* */
+
 const someCupcakes = [];
 someCupcakes.push(
   {
@@ -39,6 +40,7 @@ someCupcakes.push(
 
 function CupcakeList() {
   // Step 1: get all cupcakes
+
   console.info(useLoaderData());
 
   // Step 3: get all accessories
