@@ -46,18 +46,18 @@ function CupcakeList() {
   // Step 3: get all accessories
   const [accessories, setAccesories] = useState([]);
 
-  function getAccessories(){
+  function getAccessories() {
     fetch("http://localhost:3310/api/accessories")
-    .then((response) => response.json())
-    .then((data) => {
-      setAccesories(data);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        setAccesories(data);
+      });
   }
-  useEffect(() => { 
+  useEffect(() => {
     getAccessories();
-  }, [])
-  console.info(accessories)
-  
+  }, []);
+  console.info(accessories);
+
   // Step 5: create filter state
 
   return (
@@ -67,10 +67,15 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
-            <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
-          </select>
+          <select id="cupcake-select">
+              <option value="">---</option>
+              <option value="1">Cherry</option>
+              <option value="2">Donut</option>
+              <option value="3">Chocolate</option>
+              <option value="4">Wild</option>
+              <option value="5">Christmas Candy</option>
+            </select>
         </label>
       </form>
       <ul className="cupcake-list" id="cupcake-list">
