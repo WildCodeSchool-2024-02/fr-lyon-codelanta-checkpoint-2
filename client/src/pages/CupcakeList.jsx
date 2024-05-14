@@ -1,4 +1,5 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useRouteLoaderData } from "react-router-dom";
+import { useState } from "react";
 import Cupcake from "../components/Cupcake";
 
 /* ************************************************************************* */
@@ -39,8 +40,10 @@ someCupcakes.push(
 
 function CupcakeList() {
   // Step 1: get all cupcakes
-
+  const dataFetch = useRouteLoaderData("cupcakeFetch");
+  const [data] = useState(dataFetch);
   console.info(useLoaderData());
+
   // Step 3: get all accessories
 
   // Step 5: create filter state
@@ -61,9 +64,11 @@ function CupcakeList() {
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
         {/* Step 5: filter cupcakes before repeating */}
-        <li className="cupcake-item">
-          <Cupcake />
-        </li>
+
+        {data.map((cake) => (
+          <Cupcake key={cake.id} data={cake} />
+        ))}
+
         {/* end of block */}
       </ul>
     </>
