@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
+import axios from "axios";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
@@ -9,6 +9,11 @@ import Home from "./pages/Home";
 import Instructions from "./pages/Instructions";
 import CupcakeList from "./pages/CupcakeList";
 
+function getCupcake() {
+  return axios
+    .get("https://localhost:3310/api/cupcakes")
+    .then((response) => response.data);
+}
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +30,8 @@ const router = createBrowserRouter([
       {
         path: "/cupcakes",
         element: <CupcakeList />,
-        // Step 1: load data here
+        id: "Cupcake",
+        loader: () => getCupcake(),
       },
     ],
   },
