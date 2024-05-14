@@ -5,6 +5,7 @@ import App from "./App";
 import Home from "./pages/Home";
 import Instructions from "./pages/Instructions";
 import CupcakeList from "./pages/CupcakeList";
+import CupcakeDetails from './pages/CupcakeDetails';
 
 // Fonction des cupcakes ici
 async function fetchCupcakes() {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
 				element: <CupcakeList />,
 				// Step 1: load data here
 				loader: fetchCupcakes,
+			},
+			{
+				path: "/cupcakes/:id",
+				element: <CupcakeDetails />,
 			},
 		],
 	},
