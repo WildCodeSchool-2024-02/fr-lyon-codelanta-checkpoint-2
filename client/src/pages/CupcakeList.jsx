@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Cupcake from "../components/Cupcake";
 
 /* ************************************************************************* */
@@ -38,33 +38,41 @@ someCupcakes.push(
 /* ************************************************************************* */
 
 function CupcakeList() {
-  // Step 1: get all cupcakes
-  console.info(useLoaderData());
+  const [cupcakes, setCupcakes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Step 3: get all accessories
+  useEffect(() => {
+    const fetchCupcakes = async () => {
+      try {
+        const response = await fetch("http://localhost:3310/api/cupcakes");
+        if (!response.ok) {
+          throw new Error("Failed to fetch cupcakes");
+        }
+        const cupcakesData = await response.json();
+        setCupcakes(cupcakesData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching cupcakes:", error);
+        setLoading(false);
+      }
+    };
 
-  // Step 5: create filter state
+    fetchCupcakes();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
       <h1>My cupcakes</h1>
-      <form className="center">
-        <label htmlFor="cupcake-select">
-          {/* Step 5: use a controlled component for select */}
-          Filter by{" "}
-          <select id="cupcake-select">
-            <option value="">---</option>
-            {/* Step 4: add an option for each accessory */}
-          </select>
-        </label>
-      </form>
       <ul className="cupcake-list" id="cupcake-list">
-        {/* Step 2: repeat this block for each cupcake */}
-        {/* Step 5: filter cupcakes before repeating */}
-        <li className="cupcake-item">
-          <Cupcake />
-        </li>
-        {/* end of block */}
+        {cupcakes.map((cupcake) => (
+          <li key={cupcake.id} className="cupcake-item">
+            <Cupcake cupcake={cupcake} />
+          </li>
+        ))}
       </ul>
     </>
   );
