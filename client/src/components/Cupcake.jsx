@@ -1,14 +1,10 @@
 import PropTypes from "prop-types";
 
 import "./Cupcake.css";
-import { useRouteLoaderData } from "react-router-dom";
 
 function Cupcake({ data }) {
-  const cupcakeData = useRouteLoaderData("Cupcake");
-
   return (
     <div className="cupcake-container">
-      <div>{cupcakeData}</div>
       <div className="cupcake">
         <div className={`accessory ${data.accessory}`} />
         <div className="cream">

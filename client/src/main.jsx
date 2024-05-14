@@ -11,9 +11,10 @@ import CupcakeList from "./pages/CupcakeList";
 
 function getCupcake() {
   return axios
-    .get("https://localhost:3310/api/cupcakes")
+    .get("http://localhost:3310/api/cupcakes")
     .then((response) => response.data);
 }
+
 const router = createBrowserRouter([
   {
     path: "/",
