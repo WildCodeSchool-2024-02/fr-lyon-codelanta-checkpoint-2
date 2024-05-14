@@ -1,9 +1,9 @@
 // import { useLoaderData } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import Cupcake from "../components/Cupcake";
-
-/* ************************************************************************* */
 // const someCupcakes = [];
 // someCupcakes.push(
 //   {
@@ -90,8 +90,10 @@ function CupcakeList() {
                 filtreCupcake === "" || accessor.accessory_id === filtreCupcake
             )
             .map((cupcake) => (
-              <li key={cupcake.id} className="cupcake-item">
-                <Cupcake data={cupcake} />
+              <li className="cupcake-item" key={cupcake.id}>
+                <Link to={`/cupcakes/${cupcake.id}`} state={{ cupcake }}>
+                  <Cupcake data={cupcake} />
+                </Link>
               </li>
             ))}
         </li>
