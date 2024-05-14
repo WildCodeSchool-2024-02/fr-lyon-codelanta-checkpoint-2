@@ -40,14 +40,16 @@ someCupcakes.push(
 
 function CupcakeList() {
   // Step 1: get all cupcakes
-  console.info(useLoaderData("Cupcakes"));
+  // console.info(useLoaderData());
+  const cupCakeData = useLoaderData("Cupcake");
 
   // Step 3: get all accessories
 
   const [accessory, setAccessorie] = useState(null);
+
   useEffect(() => {
     if (accessory !== null) {
-      fetch("localhost:3310/api/accessories")
+      fetch("http://localhost:3310/api/accessories")
         .then((res) => res.json())
         .then((json) => setAccessorie(json));
     }
@@ -72,8 +74,8 @@ function CupcakeList() {
             onChange={(e) => setOption(e.target.value)}
             id="cupcake-select"
           >
-            {someCupcakes.map((cupcake) => (
-              <option key={cupcake.id} value={cupcake.accessory}>
+            {cupCakeData.map((cupcake) => (
+              <option key={cupcake.accessory_id} value={cupcake.accessory}>
                 {cupcake.accessory}
               </option>
             ))}
@@ -83,7 +85,7 @@ function CupcakeList() {
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
-        {someCupcakes.map((cupcake) => (
+        {cupCakeData.map((cupcake) => (
           <li key={cupcake.id} className="cupcake-item">
             <Cupcake cupcake={cupcake} />
             {/* Step 5: filter cupcakes before repeating */}
