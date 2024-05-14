@@ -61,7 +61,12 @@ function CupcakeList() {
         </label>
       </form>
       <ul className="cupcake-list" id="cupcake-list">
-        {/* Step 2: repeat this block for each cupcake */}
+        {cupcakesData.map((cupcake) => (
+          <li key={cupcake.id}>
+            <Cupcake data={cupcake} />
+          </li>
+        ))}
+
         {/* Step 5: filter cupcakes before repeating */}
         <li className="cupcake-item">
           <Cupcake />
