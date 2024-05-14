@@ -41,8 +41,7 @@ someCupcakes.push(
 function CupcakeList() {
   // Step 1: get all cupcakes
   // console.info(useLoaderData());
-  const cupCakeData = useLoaderData("Cupcake");
-  
+  const cupCakeData = useLoaderData("Cupcakes");
 
   // Step 3: get all accessories
 
@@ -55,7 +54,6 @@ function CupcakeList() {
         .then((json) => setAccessorie(json));
     }
   }, [accessory]);
-
 
   // Step 4 :
   const [option, setOption] = useState("");
@@ -89,7 +87,7 @@ function CupcakeList() {
           .filter((cupcake) => cupcake.accessory === option)
           .map((cupcake) => (
             <li key={cupcake.id} className="cupcake-item">
-              <Cupcake cupcake={cupcake} />
+              <Cupcake data={cupcake} />
               {/* Step 5: filter cupcakes before repeating */}
             </li>
           ))}
