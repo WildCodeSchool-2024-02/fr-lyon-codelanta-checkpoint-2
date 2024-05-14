@@ -42,7 +42,8 @@ import Cupcake from "../components/Cupcake";
 function CupcakeList() {
   const [cupcakelist, setCupcakeList] = useState([]);
   const [cupccupcakeAccessories, setCupcakeAccessories] = useState([]);
-
+  const [filtreCupcake] = useState("");
+  // console.log(cupcakelist);
   function getCupcakeAccessories() {
     axios
       .get("http://localhost:3310/api/accessories")
@@ -69,15 +70,14 @@ function CupcakeList() {
       <h1>My cupcakes</h1>
       <form className="center">
         <label htmlFor="cupcake-select">
-          {cupccupcakeAccessories.map((el) => (
-            <option key={el.id} value={el.id}>
-              {el.name}
-            </option>
-          ))}
           Filter by{" "}
           <select id="cupcake-select">
             <option value="">---</option>
-            {/* Step 4: add an option for each accessory */}
+            {cupccupcakeAccessories.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
+              </option>
+            ))}
           </select>
         </label>
       </form>
@@ -85,11 +85,16 @@ function CupcakeList() {
         {/* Step 2: repeat this block for each cupcake */}
         {/* Step 5: filter cupcakes before repeating */}
         <li className="cupcake-item">
-          {cupcakelist.map((cupcake) => (
-            <li key={cupcake.id} className="cupcake-item">
-              <Cupcake data={cupcake} />
-            </li>
-          ))}
+          {cupcakelist
+            .filter(
+              (accessor) =>
+                filtreCupcake === "" || accessor.accessory_id === filtreCupcake
+            )
+            .map((cupcake) => (
+              <li key={cupcake.id} className="cupcake-item">
+                <Cupcake data={cupcake} />
+              </li>
+            ))}
         </li>
         {/* end of block */}
       </ul>
