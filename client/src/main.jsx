@@ -9,7 +9,7 @@ import CupcakeList from "./pages/CupcakeList";
 
 function fetchData() {
   return axios
-    .get("https://pokebuildapi.fr/api/v1/pokemon/limit/251")
+    .get("http://localhost:3310/api/cupcakes")
     .then((response) => response.data);
 }
 
