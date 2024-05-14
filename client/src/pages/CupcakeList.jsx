@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import Cupcake from "../components/Cupcake";
+import CupcakeDetail from "./CupcakeDetail";
 
 /* ************************************************************************* */
 const someCupcakes = [];
@@ -93,6 +94,7 @@ function CupcakeList() {
           .map((cupcake) => (
             <li className="cupcake-item" key={cupcake.id}>
               <Cupcake cupcake={cupcake} data={cupcake} />
+              <CupcakeDetail data={cupcake} />
             </li>
           ))}
         {/* Step 5: filter cupcakes before repeating */}
