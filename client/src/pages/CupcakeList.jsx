@@ -56,7 +56,6 @@ function CupcakeList() {
     }
   }, [accessory]);
 
-  console.info();
 
   // Step 4 :
   const [option, setOption] = useState("");
