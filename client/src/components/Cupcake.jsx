@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import "./Cupcake.css";
 
@@ -40,7 +41,7 @@ function Cupcake({ data }) {
         </div>
       </div>
 
-      <div className="cupcake-name">{data.name}</div>
+      <div className="cupcake-name"><Link to={`/cupcakes/${data.id}`} >{data.name}</Link></div>
     </div>
   );
 }
@@ -52,6 +53,7 @@ Cupcake.propTypes = {
     color2: PropTypes.string.isRequired,
     color3: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    id:PropTypes.number.isRequired,
   }),
 };
 

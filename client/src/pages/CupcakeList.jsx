@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useRouteLoaderData } from "react-router-dom";
 import { useEffect, useState  } from "react";
 import Cupcake from "../components/Cupcake";
 
@@ -41,7 +41,7 @@ someCupcakes.push(
 function CupcakeList() {
   // Step 1: get all cupcakes
   console.info(useLoaderData());
-  const Api = useLoaderData("API");
+  const Api = useRouteLoaderData("API");
 
   const cupcakes = Api.map((cupcake) => (
     <li key={cupcake.id}>
@@ -68,11 +68,21 @@ function CupcakeList() {
   const filterAccessories = accessories.map((accessorie)=> <option value={accessorie.id} key={accessorie.id}>{accessorie.name} </option>)
 
   // Step 5: create filter state
-  // const [filteredAccessories, setFilteredAccessories] = useState("")
-  // const handleAccessoriesChange = () => {
-  //   filterAccessories === "" ?  setFilteredAccessories({cupcakes}) :
-  //   cupcakes.filter
+  // const [filteredAccessories, setFilteredAccessories] = useState("");
+  // const [FcupCaked, setFCupCakes] = useState(cupcakes);
+
+  // const handleAccessoriesChange = (event) => {
+  //   setFilteredAccessories(event.target.value)
   // }
+
+
+  // useEffect(() => {
+  //   const filteredArray = Api.filter(
+  //   (item) =>
+  //     item.accessory_id.includes(filteredAccessories) === true
+  // );
+  // setFCupCakes(filteredArray);}, [filteredAccessories])
+ 
 
   return (
     <>
@@ -81,7 +91,7 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
+          <select id="cupcake-select" >
             <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
             {filterAccessories}
