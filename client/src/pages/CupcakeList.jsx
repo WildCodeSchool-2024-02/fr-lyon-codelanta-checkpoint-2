@@ -42,6 +42,7 @@ function CupcakeList() {
   // Step 1: get all cupcakes
   // console.info(useLoaderData());
   const cupCakeData = useLoaderData("Cupcake");
+  
 
   // Step 3: get all accessories
 
@@ -85,12 +86,14 @@ function CupcakeList() {
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
-        {cupCakeData.map((cupcake) => (
-          <li key={cupcake.id} className="cupcake-item">
-            <Cupcake cupcake={cupcake} />
-            {/* Step 5: filter cupcakes before repeating */}
-          </li>
-        ))}
+        {cupCakeData
+          .filter((cupcake) => cupcake.accessory === option)
+          .map((cupcake) => (
+            <li key={cupcake.id} className="cupcake-item">
+              <Cupcake cupcake={cupcake} />
+              {/* Step 5: filter cupcakes before repeating */}
+            </li>
+          ))}
         {/* end of block */}
       </ul>
     </>
