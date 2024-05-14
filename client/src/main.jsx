@@ -9,6 +9,8 @@ import Home from "./pages/Home";
 import Instructions from "./pages/Instructions";
 import CupcakeList from "./pages/CupcakeList";
 
+import Api from "./API/Api";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +27,8 @@ const router = createBrowserRouter([
       {
         path: "/cupcakes",
         element: <CupcakeList />,
-        // Step 1: load data here
+        loader: () => Api(),
+        id: "API"
       },
     ],
   },
