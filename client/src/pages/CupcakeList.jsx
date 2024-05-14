@@ -49,10 +49,10 @@ function CupcakeList() {
     fetch('http://localhost:3310/api/accessories')
       .then((response) => response.json())
       .then((data) => setAccessoiries(data));
-      console.info()
+      console.info(accessoiries)
   }
   useEffect(() => {
-    fetchAccessoiries(accessoiries);
+    fetchAccessoiries();
   }, []);
 
   // Step 5: create filter state
@@ -64,9 +64,15 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
+          {/* Step 4: add an option for each accessory */}
           <select id="cupcake-select">
             <option value="">---</option>
-            {/* Step 4: add an option for each accessory */}
+            <option value="1">Cherry</option>
+            <option value="2">Donut</option>
+            <option value="3">Chocolate</option>
+            <option value="4">Wild</option>
+            <option value="5">Christmas Candy</option>
+            
           </select>
         </label>
       </form>
