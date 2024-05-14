@@ -70,7 +70,11 @@ function CupcakeList() {
           Filter by{" "}
           <select id="cupcake-select">
             <option value="">---</option>
-            {/* Step 4: add an option for each accessory */}
+            <option value="1">Cherry</option>
+            <option value="2">Donut</option>
+            <option value="3">Chocolate</option>
+            <option value="4">Wild</option>
+            <option value="5">Christmas Candy</option>
           </select>
         </label>
       </form>
