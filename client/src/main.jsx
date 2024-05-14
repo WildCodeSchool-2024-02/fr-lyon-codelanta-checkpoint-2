@@ -1,13 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import axios from "axios";
 import App from "./App";
-
 import Home from "./pages/Home";
 import Instructions from "./pages/Instructions";
 import CupcakeList from "./pages/CupcakeList";
+
+function fetchData() {
+  return axios
+    .get("https://pokebuildapi.fr/api/v1/pokemon/limit/251")
+    .then((response) => response.data);
+}
 
 const router = createBrowserRouter([
   {
@@ -25,6 +29,8 @@ const router = createBrowserRouter([
       {
         path: "/cupcakes",
         element: <CupcakeList />,
+        id: "cupcakeFetch",
+        loader: () => fetchData(),
         // Step 1: load data here
       },
     ],
