@@ -8,13 +8,11 @@ import Home from "./pages/Home";
 import Instructions from "./pages/Instructions";
 import CupcakeList from "./pages/CupcakeList";
 
-
 function fetchCupcakes() {
   return fetch("http://localhost:3310/api/cupcakes").then((response) =>
     response.json()
   );
 }
-
 
 const router = createBrowserRouter([
   {

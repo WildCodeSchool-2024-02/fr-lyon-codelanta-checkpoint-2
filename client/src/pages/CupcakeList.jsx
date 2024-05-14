@@ -39,7 +39,7 @@ someCupcakes.push(
 
 function CupcakeList() {
   console.info(useLoaderData(CupcakeList));
-  
+
   // Step 3: get all accessories
 
   // Step 5: create filter state
