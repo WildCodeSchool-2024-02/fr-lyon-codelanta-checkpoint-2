@@ -49,7 +49,7 @@ function CupcakeList() {
   const [accessories, setAccessories] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3310/api/cupcakes")
+      .get("http://localhost:3310/api/accessories")
       .then((response) => setAccessories(response.data));
   }, []);
   console.info(accessories);
