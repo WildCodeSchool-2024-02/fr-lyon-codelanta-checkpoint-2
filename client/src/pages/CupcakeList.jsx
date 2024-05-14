@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cupcake from "../components/Cupcake";
@@ -42,7 +42,7 @@ import Cupcake from "../components/Cupcake";
 function CupcakeList() {
   const [cupcakelist, setCupcakeList] = useState([]);
   const [cupccupcakeAccessories, setCupcakeAccessories] = useState([]);
-  const [filtreCupcake] = useState("");
+  const [filtreCupcake, setFiltreCupcake] = useState("");
   // console.log(cupcakelist);
   function getCupcakeAccessories() {
     axios
@@ -61,9 +61,10 @@ function CupcakeList() {
     getCupcake();
   }, []);
 
-  console.info(useLoaderData());
-
-  // Step 5: create filter state
+  const handleChange = (event) => {
+    setFiltreCupcake(event.target.value);
+  };
+  // console.info(useLoaderData());
 
   return (
     <>
@@ -71,7 +72,7 @@ function CupcakeList() {
       <form className="center">
         <label htmlFor="cupcake-select">
           Filter by{" "}
-          <select id="cupcake-select">
+          <select id="cupcake-select" onChange={handleChange}>
             <option value="">---</option>
             {cupccupcakeAccessories.map((item) => (
               <option key={item.id} value={item.id}>
@@ -82,8 +83,6 @@ function CupcakeList() {
         </label>
       </form>
       <ul className="cupcake-list" id="cupcake-list">
-        {/* Step 2: repeat this block for each cupcake */}
-        {/* Step 5: filter cupcakes before repeating */}
         <li className="cupcake-item">
           {cupcakelist
             .filter(
