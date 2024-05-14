@@ -43,11 +43,13 @@ function CupcakeList() {
   console.info(useLoaderData());
   const Api = useRouteLoaderData("API");
 
-  const cupcakes = Api.map((cupcake) => (
-    <li key={cupcake.id}>
-      <Cupcake data={cupcake} />
-    </li>
-  ));
+  // const cupcakes = filteredA.map((cupcake) => (
+  //   <li key={cupcake.id}>
+  //     <Cupcake data={cupcake} />
+  //   </li>
+  // ));
+
+  // ********* const cupcakes copiée plus bas *************
 
 
   // Step 3: get all accessories
@@ -68,21 +70,31 @@ function CupcakeList() {
   const filterAccessories = accessories.map((accessorie)=> <option value={accessorie.id} key={accessorie.id}>{accessorie.name} </option>)
 
   // Step 5: create filter state
-  // const [filteredAccessories, setFilteredAccessories] = useState("");
-  // const [FcupCaked, setFCupCakes] = useState(cupcakes);
+  const [filteredAccessories, setFilteredAccessories] = useState("");
+  const [filteredA, setFilteredA] = useState(Api);
 
-  // const handleAccessoriesChange = (event) => {
-  //   setFilteredAccessories(event.target.value)
-  // }
+  useEffect(()=> {
+    if (filteredAccessories !== "") {
+      const filteredArray =  Api.filter(
+          (item) => item.accessory_id === filteredAccessories)
+          setFilteredA(filteredArray)
+    }
+    else {
+      setFilteredA(Api)
+    }
 
+  }, [filteredAccessories, Api])
 
-  // useEffect(() => {
-  //   const filteredArray = Api.filter(
-  //   (item) =>
-  //     item.accessory_id.includes(filteredAccessories) === true
-  // );
-  // setFCupCakes(filteredArray);}, [filteredAccessories])
- 
+  const cupcakes = filteredA.map((cupcake) => (
+    <li key={cupcake.id}>
+      <Cupcake data={cupcake} />
+    </li>
+  ));
+  
+  const handleAccessoriesChange = (event) => {
+    setFilteredAccessories(event.target.value);
+  };
+
 
   return (
     <>
@@ -91,7 +103,7 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select" >
+          <select id="cupcake-select" onChange={handleAccessoriesChange}>
             <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
             {filterAccessories}
