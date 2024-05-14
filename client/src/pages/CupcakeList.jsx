@@ -39,6 +39,7 @@ someCupcakes.push(
 
 function CupcakeList() {
   // Step 1: get all cupcakes
+  const cupcakes = useLoaderData();
   console.info(useLoaderData());
 
   // Step 3: get all accessories
@@ -48,6 +49,7 @@ function CupcakeList() {
   return (
     <>
       <h1>My cupcakes</h1>
+      {cupcakes ? <pre>{JSON.stringify(cupcakes, null, 2)}</pre> : "Loading..."}
       <form className="center">
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
@@ -60,6 +62,7 @@ function CupcakeList() {
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
+
         {/* Step 5: filter cupcakes before repeating */}
         <li className="cupcake-item">
           <Cupcake />
